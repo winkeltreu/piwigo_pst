@@ -39,7 +39,8 @@ function PST_index_page() {
     $requests = explode('/', $_SERVER['REQUEST_URI']);
 
     if (in_array('tags', $requests) || in_array('search', $requests))
-        redirect(get_absolute_root_url()."identification.php");
+        if (!(is_classic_user() || is_admin() || is_webmaster()))
+            redirect(get_absolute_root_url()."identification.php");
 }
 
 function PST_search_tag_page() {
